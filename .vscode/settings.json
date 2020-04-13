@@ -1,8 +1,8 @@
 {
-    "python.pythonPath": "env\\Scripts\\python.exe",
+    "python.pythonPath": "C:\\Users\\bogda\\AppData\\Local\\Programs\\Python\\Python37\\python.exe",
     "python.linting.pylintEnabled": true,
-    "python.linting.enabled": ,
+    "python.linting.enabled": true,
     "terminal.integrated.env.windows": {
-        "MONGO_URI": "mongodb+srv://root:95123654789@PersonalJournalCluster-iqbtq.mongodb.net/personal_journal?retryWrites=true"
+        "MONGO_URI": "mongodb+srv://root:95123654789@personaljournalcluster-arek7.mongodb.net/personal_journal?retryWrites=true&w=majority"
     }
 }
