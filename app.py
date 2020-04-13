@@ -11,12 +11,12 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
-@app.route('/get_stories')
-def get_stories():
-    return render_template("stories.html", stories=mongo.db.stories.find())
+@app.route('/get_entries')
+def get_entries():
+    return render_template("entries.html", entries=mongo.db.entries.find())
 
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
-            port=int(os.environ.get('PORT')),
+            port=os.environ.get('PORT'),
             debug=True)
