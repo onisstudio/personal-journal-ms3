@@ -1,17 +1,21 @@
 {% extends 'base.html' %}
 {% block content %}
 
+<div id="editor">
+    <p>This is some sample content.</p>
+</div>
+
 {% for entry in entries %}
 <div class="row">
     <div class="col s12">
         <div class="card blue-grey darken-1">
             <div class="card-content white-text">
                 <span class="card-title">{{entry.entry_title}} <span class="new badge red" data-badge-caption="{{entry.feeling_name}}"></span></span>
-                <p>{{entry.entry_description}}</p>
+                <p class="flow-text truncate">{{entry.entry_description}}</p>
             </div>
             <div class="card-action">
-                <a href="#">This is a link</a>
-                <a href="#">This is a link</a>
+                <a href="#">Edit</a>
+                <a href="#">Delete</a>
             </div>
         </div>
     </div>
