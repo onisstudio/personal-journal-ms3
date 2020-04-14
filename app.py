@@ -15,6 +15,16 @@ mongo = PyMongo(app)
 def get_entries():
     return render_template("entries.html", entries=mongo.db.entries.find())
 
+@app.route('/add_entry')
+def add_entry():
+    return render_template('addentry.html',
+    feelings=mongo.db.feelings.find())
+
+@app.route('/insert_entry', methods=['POST'])
+def insert_entry():
+    entries = mongo.db.entries
+    entries.insert_one(request.form.to_dict())
+    return redirect(url_for('get_entries'))
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

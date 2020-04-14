@@ -1,22 +1,6 @@
 {% extends 'base.html' %}
 {% block content %}
 
-
-<div class="row">
-    <div class="col s12">
-        <div class="card">
-            <div class="card-content">
-                <div id="editor">
-                    <p></p>
-                </div>
-            </div>
-            <div class="card-action right-align">
-                <a class="waves-effect waves-light btn">Save</a>
-            </div>
-        </div>
-    </div>
-</div>
-
 {% for entry in entries %}
 <div class="row">
     <div class="col s12">
@@ -24,7 +8,7 @@
             <div class="card-content white-text">
                 <span class="card-title">{{entry.entry_title}} <span class="new badge red"
                         data-badge-caption="{{entry.feeling_name}}"></span></span>
-                <p class="flow-text truncate">{{entry.entry_description}}</p>
+                <p class="flow-text truncate">{{entry.entry_story}}</p>
             </div>
             <div class="card-action">
                 <a href="#">Edit</a>
