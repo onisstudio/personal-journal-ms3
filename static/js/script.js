@@ -1,9 +1,24 @@
   $(document).ready(function () {
-      $('.collapsible').collapsible();
+      InlineEditor
+          .create(document.querySelector('#editor'), {
+              toolbar: {
+                  items: [
+                      'bold',
+                      'italic',
+                      'link',
+                      'bulletedList',
+                      'numberedList',
+                      '|',
+                      'indent',
+                      'outdent',
+                      '|',
+                      'undo',
+                      'redo'
+                  ]
+              },
+              placeholder: 'Type the content here!'
+          })
+          .catch(error => {
+              console.error(error);
+          });
   });
-
-  ClassicEditor
-      .create(document.querySelector('#editor'))
-      .catch(error => {
-          console.error(error);
-      });
