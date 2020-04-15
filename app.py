@@ -2,6 +2,7 @@ import os
 from flask import Flask, render_template, redirect, request, url_for
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
+import datetime
 
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'personal_journal'
@@ -23,7 +24,9 @@ def add_entry():
 @app.route('/insert_entry', methods=['POST'])
 def insert_entry():
     entries = mongo.db.entries
-    entries.insert_one(request.form.to_dict())
+    form_data = request.form.to_dict()
+    form_data['entry_created'] = datetime.datetime.utcnow()
+    entries.insert_one(form_data)
     return redirect(url_for('get_entries'))
 
 if __name__ == '__main__':
