@@ -1,0 +1,57 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="row">
+    <div class="col s12">
+        <div class="card">
+            <form action="{{ url_for('update_entry', entry_id=entry._id) }}" method="POST" class="col s12">
+                <div class="card-content">
+                    <div class="row">
+                        <span class="card-title">
+                            <div class="input-field">
+                                <i class="material-icons prefix">title</i>
+                                <input id="entry_title" name="entry_title" type="text" value="{{entry.entry_title}}">
+                                <label for="entry_title">Title</label>
+                            </div>
+                        </span>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field">
+                            <span class="material-icons prefix">
+                                subject
+                            </span>
+                            <textarea id="entry_story" name="entry_story" class="materialize-textarea">{{entry.entry_story}}</textarea>
+                            <label for="entry_story">Story</label>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="input-field">
+                            <span class="material-icons prefix">
+                                sentiment_satisfied
+                            </span>
+                            <select id="feeling" name="feeling_name">
+                                <option value="" disabled selected>Add a feeling</option>
+                                {% for feeling in feelings %}
+                                {% if feeling.feeling_name == entry.feeling_name %}
+                                <option value="{{feeling.feeling_name}}" selected>{{feeling.feeling_name}}</option>
+                                {% else %}
+                                <option value="{{feeling.feeling_name}}">{{feeling.feeling_name}}</option>
+                                {% endif %}
+                                {% endfor %}
+                            </select>
+                            <label>Feeling</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action right-align">
+                    <button class="btn waves-effect waves-light" type="submit">Save<i
+                            class="material-icons right">add</i></button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
