@@ -1,4 +1,7 @@
 {% extends 'base.html' %}
+
+{% block title %}Entries{% endblock title %}
+
 {% block content %}
 
 {% if entries_num > 0 %}
@@ -22,7 +25,7 @@
 {% endfor %}
 {% else %}
 <blockquote>
-    <p>No entries yes.</p>
+    <p>No entries yet.</p>
 </blockquote>
 {% endif %}
 
