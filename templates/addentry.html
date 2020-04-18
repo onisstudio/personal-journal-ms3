@@ -4,18 +4,8 @@
 <div class="row">
     <div class="col s12">
         <div class="card">
-            <form action="{{ url_for('insert_entry') }}" method="POST" class="col s12">
+            <form action="{{ url_for('insert_entry') }}" method="POST">
             <div class="card-content">
-                <div class="row">
-                    <span class="card-title">
-                        <div class="input-field">
-                            <i class="material-icons prefix">title</i>
-                            <input id="entry_title" name="entry_title" type="text">
-                            <label for="entry_title">Title</label>
-                        </div>
-                    </span>
-                </div>
-
                 <div class="row">
                     <div class="input-field">
                         <span class="material-icons prefix">

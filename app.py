@@ -52,7 +52,6 @@ def update_entry(entry_id):
     entries.update({'_id': ObjectId(entry_id)},
                    {
         '$set': {
-            'entry_title': request.form.get('entry_title'),
             'entry_story': request.form.get('entry_story'),
             'feeling_name': request.form.get('feeling_name'),
             'entry_updated': datetime.datetime.utcnow()
