@@ -14,6 +14,7 @@
         <nav>
             <div class="nav-wrapper grey darken-4">
                 <a href="#" class="brand-logo">Personal Journal</a>
+                <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/">Home</a></li>
                     <li><a href="/entries">Entries</a></li>
@@ -24,15 +25,22 @@
         </nav>
     </div>
 
+    <ul class="sidenav" id="mobile-demo">
+        <li><a href="/">Home</a></li>
+        <li><a href="/entries">Entries</a></li>
+        <li><a href="/add_entry">Add entry</a></li>
+        <li><a href="/archive">Archive</a></li>
+    </ul>
+
     <main class="container mt20">
         {% block content %}
         {% endblock %}
-        
+
         <div class="fixed-action-btn">
             <a class="btn-floating btn-large red" href="/add_entry">
-              <i class="large material-icons">add</i>
+                <i class="large material-icons">add</i>
             </a>
-          </div>
+        </div>
     </main>
 
     <footer class="page-footer grey darken-4 pt0">

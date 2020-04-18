@@ -12,6 +12,7 @@ mongo = PyMongo(app)
 
 
 @app.route('/')
+@app.route('/entries')
 @app.route('/get_entries')
 def get_entries():
     return render_template("entries.html",
@@ -75,6 +76,14 @@ def delete_entry(entry_id):
     mongo.db.entries.remove({'_id': ObjectId(entry_id)})
     return redirect(url_for('get_entries'))
 
+@app.route('/archive')
+def archive():
+    return render_template("entries.html",
+                           entries=mongo.db.entries.find(
+                               {'entry_status': '2'}),
+                           entries_num=mongo.db.entries.find(
+                               {'entry_status': '2'}).count()
+                           )
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
