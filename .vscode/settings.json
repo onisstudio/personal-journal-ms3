@@ -1,8 +1,0 @@
-{
-    "python.pythonPath": "env\\Scripts\\python.exe",
-    "python.linting.pylintEnabled": true,
-    "python.linting.enabled": true,
-    "terminal.integrated.env.windows": {
-        "MONGO_URI": "mongodb+srv://root:95123654789@personaljournalcluster-arek7.mongodb.net/personal_journal?retryWrites=true&w=majority"
-    }
-}
