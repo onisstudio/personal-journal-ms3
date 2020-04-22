@@ -21,7 +21,7 @@
                 {% elif entry.entry_status == "2" %}
                 <a href="#" id="unarchive_entry" data-id="{{entry._id}}">Unarchive</a>
                 {% endif %}
-                <a href="{{url_for('delete_entry', entry_id=entry._id)}}">Delete</a>
+                <a href="#" id="delete_entry" data-id="{{entry._id}}">Delete</a>
                 <span class="right">feeling {{entry.feeling_name}}</span>
             </div>
         </div>

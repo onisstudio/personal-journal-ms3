@@ -71,6 +71,7 @@ def archive_entry():
     })
     return jsonify(entry_id)
 
+
 @app.route('/_unarchive_entry')
 def unarchive_entry():
     entry_id = request.args.get('entry_id', 0)
@@ -81,10 +82,12 @@ def unarchive_entry():
     })
     return jsonify(entry_id)
 
-@app.route('/delete_entry/<entry_id>')
-def delete_entry(entry_id):
+
+@app.route('/_delete_entry')
+def delete_entry():
+    entry_id = request.args.get('entry_id', 0)
     mongo.db.entries.remove({'_id': ObjectId(entry_id)})
-    return redirect(url_for('get_entries'))
+    return jsonify(entry_id)
 
 
 @app.route('/archive')
@@ -96,11 +99,6 @@ def archive():
                                {'entry_status': '2'}).count()
                            )
 
-@app.route('/_add_numbers')
-def add_numbers():
-    a = request.args.get('a', 0, type=int)
-    b = request.args.get('b', 0, type=int)
-    return jsonify(result=a + b)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),
