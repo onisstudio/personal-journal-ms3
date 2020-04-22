@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for
+from flask import Flask, render_template, redirect, request, url_for, jsonify
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import datetime
@@ -61,20 +61,31 @@ def update_entry(entry_id):
     return redirect(url_for('get_entries'))
 
 
-@app.route('/archive_entry/<entry_id>')
-def archive_entry(entry_id):
+@app.route('/_archive_entry')
+def archive_entry():
+    entry_id = request.args.get('entry_id', 0)
     entries = mongo.db.entries
     entries.update_one({'_id': ObjectId(entry_id)},
                        {
         '$set': {'entry_status': '2'}
     })
-    return redirect(url_for('get_entries'))
+    return jsonify(entry_id)
 
+@app.route('/_unarchive_entry')
+def unarchive_entry():
+    entry_id = request.args.get('entry_id', 0)
+    entries = mongo.db.entries
+    entries.update_one({'_id': ObjectId(entry_id)},
+                       {
+        '$set': {'entry_status': '1'}
+    })
+    return jsonify(entry_id)
 
 @app.route('/delete_entry/<entry_id>')
 def delete_entry(entry_id):
     mongo.db.entries.remove({'_id': ObjectId(entry_id)})
     return redirect(url_for('get_entries'))
+
 
 @app.route('/archive')
 def archive():
@@ -84,6 +95,12 @@ def archive():
                            entries_num=mongo.db.entries.find(
                                {'entry_status': '2'}).count()
                            )
+
+@app.route('/_add_numbers')
+def add_numbers():
+    a = request.args.get('a', 0, type=int)
+    b = request.args.get('b', 0, type=int)
+    return jsonify(result=a + b)
 
 if __name__ == '__main__':
     app.run(host=os.environ.get('IP'),

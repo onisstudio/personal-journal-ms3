@@ -6,22 +6,28 @@
 
 {% if entries_num > 0 %}
 {% for entry in entries %}
-<div class="row">
+<div class="row" id="entry-{{entry._id}}">
     <div class="col s12">
         <div class="card z-depth-1">
             <div class="card-content">
                 <span class="new badge teal darken-3 tooltipped" data-position="top" data-tooltip="Date created"
-                        data-badge-caption="{{entry.entry_created.strftime('%a %d %b, %Y')}}"></span>
+                    data-badge-caption="{{entry.entry_created.strftime('%a %d %b, %Y')}}"></span>
                 <p class="flow-text">{{entry.entry_story}}</p>
             </div>
             <div class="card-action">
                 <a href="{{url_for('edit_entry', entry_id=entry._id)}}">Edit</a>
-                <a href="{{url_for('archive_entry', entry_id=entry._id)}}">Archive</a>
+                {% if entry.entry_status == "1" %}
+                <a href="#" id="archive_entry" data-id="{{entry._id}}">Archive</a>
+                {% elif entry.entry_status == "2" %}
+                <a href="#" id="unarchive_entry" data-id="{{entry._id}}">Unarchive</a>
+                {% endif %}
+                <a href="{{url_for('delete_entry', entry_id=entry._id)}}">Delete</a>
                 <span class="right">feeling {{entry.feeling_name}}</span>
             </div>
         </div>
     </div>
 </div>
+
 {% endfor %}
 {% else %}
 <blockquote>
