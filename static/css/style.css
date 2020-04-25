@@ -20,6 +20,7 @@ nav .brand-logo {
   background-size: cover;
 }
 
+#error-page,
 #login-page {
   display: -webkit-box;
   display: -webkit-flex;

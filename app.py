@@ -37,6 +37,7 @@ def entries(username):
 @app.route('/add_entry')
 def add_entry():
     return render_template('addentry.html',
+                           username=session["username"],
                            feelings=mongo.db.feelings.find())
 
 
@@ -48,7 +49,7 @@ def insert_entry():
     form_data['entry_status'] = '1'
     form_data['entry_created'] = datetime.datetime.utcnow()
     entries.insert_one(form_data)
-    return redirect(url_for('entries/' + session["username"]))
+    return redirect("/")
 
 
 @app.route('/edit_entry/<entry_id>')
@@ -70,7 +71,7 @@ def update_entry(entry_id):
             'entry_updated': datetime.datetime.utcnow()
         }
     })
-    return redirect(url_for('entries/' + session["username"]))
+    return redirect("/")
 
 
 @app.route('/_archive_entry')
@@ -117,6 +118,12 @@ def archive(username):
 def logout():
     session.pop('username')
     return redirect('/')
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    # note that we set the 404 status explicitly
+    return render_template('404.html'), 404
 
 
 if __name__ == '__main__':
