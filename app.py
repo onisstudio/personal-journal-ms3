@@ -25,6 +25,9 @@ def index():
 
 @app.route('/entries/<username>')
 def entries(username):
+    if "username" not in session:
+        return redirect("/")
+
     return render_template("entries.html",
                            username=username,
                            entries=mongo.db.entries.find(
@@ -36,6 +39,9 @@ def entries(username):
 
 @app.route('/add_entry')
 def add_entry():
+    if "username" not in session:
+        return redirect("/")
+
     return render_template('addentry.html',
                            username=session["username"],
                            feelings=mongo.db.feelings.find())
@@ -57,6 +63,7 @@ def edit_entry(entry_id):
     the_entry = mongo.db.entries.find_one({"_id": ObjectId(entry_id)})
     all_feelings = mongo.db.feelings.find()
     return render_template('editentry.html', entry=the_entry,
+                           username=session["username"],
                            feelings=all_feelings)
 
 
@@ -105,6 +112,9 @@ def delete_entry():
 
 @app.route('/archive/<username>')
 def archive(username):
+    if "username" not in session:
+        return redirect("/")
+
     return render_template("entries.html",
                            username=username,
                            entries=mongo.db.entries.find(
