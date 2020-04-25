@@ -1,5 +1,5 @@
 import os
-from flask import Flask, render_template, redirect, request, url_for, jsonify
+from flask import Flask, render_template, redirect, request, url_for, jsonify, session
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 import datetime
@@ -7,19 +7,30 @@ import datetime
 app = Flask(__name__)
 app.config["MONGO_DBNAME"] = 'personal_journal'
 app.config["MONGO_URI"] = os.getenv('MONGO_URI')
+app.config["SECRET_KEY"] = os.getenv('SECRET_KEY')
 
 mongo = PyMongo(app)
 
 
-@app.route('/')
-@app.route('/entries')
-@app.route('/get_entries')
-def get_entries():
+@app.route("/", methods=["GET", "POST"])
+def index():
+    if request.method == "POST":
+        session["username"] = request.form["username"]
+
+    if "username" in session:
+        return redirect('entries/' + session["username"])
+
+    return render_template("login.html")
+
+
+@app.route('/entries/<username>')
+def entries(username):
     return render_template("entries.html",
+                           username=username,
                            entries=mongo.db.entries.find(
-                               {'entry_status': '1'}).sort("entry_created", -1)   ,
-                           entries_num=mongo.db.entries.find(
-                               {'entry_status': '1'}).count()
+                               {'entry_user': username, 'entry_status': '1'}).sort("entry_created", -1),
+                           entries_num=mongo.db.entries.count_documents(
+                               {'entry_user': username, 'entry_status': '1'})
                            )
 
 
@@ -33,10 +44,11 @@ def add_entry():
 def insert_entry():
     entries = mongo.db.entries
     form_data = request.form.to_dict()
+    form_data['entry_user'] = session["username"]
     form_data['entry_status'] = '1'
     form_data['entry_created'] = datetime.datetime.utcnow()
     entries.insert_one(form_data)
-    return redirect(url_for('get_entries'))
+    return redirect(url_for('entries/' + session["username"]))
 
 
 @app.route('/edit_entry/<entry_id>')
@@ -58,7 +70,7 @@ def update_entry(entry_id):
             'entry_updated': datetime.datetime.utcnow()
         }
     })
-    return redirect(url_for('get_entries'))
+    return redirect(url_for('entries/' + session["username"]))
 
 
 @app.route('/_archive_entry')
@@ -90,14 +102,21 @@ def delete_entry():
     return jsonify(entry_id)
 
 
-@app.route('/archive')
-def archive():
+@app.route('/archive/<username>')
+def archive(username):
     return render_template("entries.html",
+                           username=username,
                            entries=mongo.db.entries.find(
-                               {'entry_status': '2'}),
-                           entries_num=mongo.db.entries.find(
-                               {'entry_status': '2'}).count()
+                               {'entry_user': username, 'entry_status': '2'}).sort("entry_created", -1),
+                           entries_num=mongo.db.entries.count_documents(
+                               {'entry_user': username, 'entry_status': '2'})
                            )
+
+
+@app.route('/logout')
+def logout():
+    session.pop('username')
+    return redirect('/')
 
 
 if __name__ == '__main__':

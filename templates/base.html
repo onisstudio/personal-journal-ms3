@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" href="../static/css/style.css">
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+    <link rel="stylesheet" href="../static/css/materialize.min.css">
 
     <title>{% block title %}{% endblock %} - Personal Journal</title>
 </head>
@@ -18,9 +18,9 @@
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down">
                     <li><a href="/">Home</a></li>
-                    <li><a href="/entries">Entries</a></li>
                     <li><a href="/add_entry">Add entry</a></li>
-                    <li><a href="/archive">Archive</a></li>
+                    <li><a href="/archive/{{username}}">Archive</a></li>
+                    <li><a href="/logout">Logout</a></li>
                 </ul>
             </div>
         </nav>
@@ -28,9 +28,9 @@
 
     <ul class="sidenav" id="mobile-demo">
         <li><a href="/">Home</a></li>
-        <li><a href="/entries">Entries</a></li>
         <li><a href="/add_entry">Add entry</a></li>
-        <li><a href="/archive">Archive</a></li>
+        <li><a href="/archive/{{username}}">Archive</a></li>
+        <li><a href="/logout">Logout</a></li>
     </ul>
 
     <main class="container mt20">

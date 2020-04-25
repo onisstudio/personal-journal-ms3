@@ -12,7 +12,34 @@ nav .brand-logo {
   margin-left: 15px;
 }
 
-/*---------- SPACING ----------*/
+/* login Page */
+
+.login-bg {
+  background-image: url("../img/flock-of-birds-917494.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+#login-page {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+  -webkit-justify-content: center;
+  -ms-flex-pack: center;
+  justify-content: center;
+  -webkit-box-align: center;
+  -webkit-align-items: center;
+  -ms-flex-align: center;
+  align-items: center;
+  height: 100vh;
+}
+
+#login-page .login-card {
+  min-width: 450px;
+  margin-left: 0 !important;
+}
 
 /* Padding Zero */
 
