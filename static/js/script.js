@@ -3,6 +3,7 @@
     $('.tooltipped').tooltip();
     $('.fixed-action-btn').floatingActionButton();
     $('.sidenav').sidenav();
+    $('.modal').modal();
 
     $(function () {
       $('a#archive_entry').bind('click', function () {
@@ -38,13 +39,23 @@
       });
     });
 
+    $(document).on("click", ".modal-trigger.delete-confirm", function (e) {
+
+      //get data-id attribute of the clicked element
+      var entry_id = $(this).data('id');
+
+      //add data id for the delete button
+      $('.modal-footer').find('a#delete_entry').data('id', entry_id);
+    });
+
     $(function () {
       $('a#delete_entry').bind('click', function () {
         var entry_id = $(this).data('id');
 
         $.getJSON('/_delete_entry', {
           entry_id: entry_id,
-        }, function (data) {
+        }, function () {
+          $('.modal').modal('close');
           $("#entry-" + entry_id).hide("slow");
           M.toast({
             html: 'Entry successfully deleted!',

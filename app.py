@@ -17,7 +17,7 @@ mongo = PyMongo(app)
 def get_entries():
     return render_template("entries.html",
                            entries=mongo.db.entries.find(
-                               {'entry_status': '1'}),
+                               {'entry_status': '1'}).sort("entry_created", -1)   ,
                            entries_num=mongo.db.entries.find(
                                {'entry_status': '1'}).count()
                            )

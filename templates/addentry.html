@@ -8,36 +8,37 @@
     <div class="col s12">
         <div class="card">
             <form action="{{ url_for('insert_entry') }}" method="POST">
-            <div class="card-content">
-                <div class="row">
-                    <div class="input-field">
-                        <span class="material-icons prefix">
-                            subject
-                        </span>
-                        <textarea id="entry_story" name="entry_story" class="materialize-textarea"></textarea>
-                        <label for="entry_story">Story</label>
+                <div class="card-content">
+                    <div class="row">
+                        <div class="input-field">
+                            <span class="material-icons prefix">
+                                subject
+                            </span>
+                            <textarea id="entry_story" name="entry_story" class="materialize-textarea validate"
+                                required="" aria-required="true"></textarea>
+                            <label for="entry_story">Story</label>
+                        </div>
                     </div>
-                </div>
 
-                <div class="row">
-                    <div class="input-field">
-                        <span class="material-icons prefix">
-                            sentiment_satisfied
-                        </span>
-                        <select id="feeling" name="feeling_name">
-                            <option value="" disabled selected>Add a feeling</option>
-                            {% for feeling in feelings %}
-                            <option value="{{feeling.feeling_name}}">{{feeling.feeling_name}}</option>
-                            {% endfor %}
-                        </select>
-                        <label>Feeling</label>
+                    <div class="row">
+                        <div class="input-field">
+                            <span class="material-icons prefix">
+                                sentiment_satisfied
+                            </span>
+                            <select id="feeling" name="feeling_name">
+                                <option value="" selected>Add a feeling</option>
+                                {% for feeling in feelings %}
+                                <option value="{{feeling.feeling_name}}">{{feeling.feeling_name}}</option>
+                                {% endfor %}
+                            </select>
+                            <label>Feeling</label>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="card-action right-align">
-                <button class="btn waves-effect waves-light" type="submit">Save<i
-                        class="material-icons right">add</i></button>
-            </div>
+                <div class="card-action right-align">
+                    <button class="btn waves-effect waves-light" type="submit">Save<i
+                            class="material-icons right">add</i></button>
+                </div>
             </form>
         </div>
     </div>

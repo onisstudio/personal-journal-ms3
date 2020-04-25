@@ -21,8 +21,10 @@
                 {% elif entry.entry_status == "2" %}
                 <a href="#" id="unarchive_entry" data-id="{{entry._id}}">Unarchive</a>
                 {% endif %}
-                <a href="#" id="delete_entry" data-id="{{entry._id}}">Delete</a>
+                <a href="#delete_entry_modal" class="modal-trigger delete-confirm" data-id="{{entry._id}}">Delete</a>
+                {% if entry.feeling_name %}
                 <span class="right">feeling {{entry.feeling_name}}</span>
+                {% endif %}
             </div>
         </div>
     </div>
@@ -34,5 +36,16 @@
     <p>No entries yet.</p>
 </blockquote>
 {% endif %}
+
+<div id="delete_entry_modal" class="modal">
+  <div class="modal-content">
+    <h4>Are you sure?</h4>
+    <p>Do you really want to delete this record? This process cannot be undone.</p>
+  </div>
+  <div class="modal-footer">
+    <a href="#!" class="modal-close btn waves-effect waves-light grey">Cancel</a>
+    <a href="#!" id="delete_entry" class="btn waves-effect waves-light red">Delete</a>
+  </div>
+</div>
 
 {% endblock %}

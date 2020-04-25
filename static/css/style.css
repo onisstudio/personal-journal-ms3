@@ -8,6 +8,10 @@ main {
   flex: 1 0 auto;
 }
 
+nav .brand-logo {
+  margin-left: 15px;
+}
+
 /*---------- SPACING ----------*/
 
 /* Padding Zero */
