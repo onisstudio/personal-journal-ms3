@@ -17,9 +17,9 @@
             <div class="card-action">
                 <a href="{{url_for('edit_entry', entry_id=entry._id)}}">Edit</a>
                 {% if entry.entry_status == "1" %}
-                <a href="#" id="archive_entry" data-id="{{entry._id}}">Archive</a>
+                <a href="#" class="archive_entry" data-id="{{entry._id}}">Archive</a>
                 {% elif entry.entry_status == "2" %}
-                <a href="#" id="unarchive_entry" data-id="{{entry._id}}">Unarchive</a>
+                <a href="#" class="unarchive_entry" data-id="{{entry._id}}">Unarchive</a>
                 {% endif %}
                 <a href="#delete_entry_modal" class="modal-trigger delete-confirm" data-id="{{entry._id}}">Delete</a>
                 {% if entry.feeling_name %}
@@ -43,8 +43,8 @@
     <p>Do you really want to delete this record? This process cannot be undone.</p>
   </div>
   <div class="modal-footer">
-    <a href="#!" class="modal-close btn waves-effect waves-light grey">Cancel</a>
-    <a href="#!" id="delete_entry" class="btn waves-effect waves-light red">Delete</a>
+    <a href="#" class="modal-close btn waves-effect waves-light grey">Cancel</a>
+    <a href="#" class="btn waves-effect waves-light red delete_entry">Delete</a>
   </div>
 </div>
 

@@ -6,7 +6,7 @@
     $('.modal').modal();
 
     $(function () {
-      $('a#archive_entry').bind('click', function () {
+      $('a.archive_entry').bind('click', function () {
         var entry_id = $(this).data('id');
 
         $.getJSON('/_archive_entry', {
@@ -23,7 +23,7 @@
     });
 
     $(function () {
-      $('a#unarchive_entry').bind('click', function () {
+      $('a.unarchive_entry').bind('click', function () {
         var entry_id = $(this).data('id');
 
         $.getJSON('/_unarchive_entry', {
@@ -39,17 +39,17 @@
       });
     });
 
-    $(document).on("click", ".modal-trigger.delete-confirm", function (e) {
+    $(document).on("click", ".modal-trigger.delete-confirm", function () {
 
       //get data-id attribute of the clicked element
       var entry_id = $(this).data('id');
 
       //add data id for the delete button
-      $('.modal-footer').find('a#delete_entry').data('id', entry_id);
+      $('.modal-footer').find('a.delete_entry').data('id', entry_id);
     });
 
     $(function () {
-      $('a#delete_entry').bind('click', function () {
+      $('a.delete_entry').bind('click', function () {
         var entry_id = $(this).data('id');
 
         $.getJSON('/_delete_entry', {

@@ -30,13 +30,13 @@ The application is a one page app which has a login page for first time users, a
 
 ### Skeleton
 
-[Landing wireframe]()
+[Landing wireframe](https://github.com/onisstudio/personal-journal-ms3/blob/master/wireframes/landing.png)
 
-[Landing mobile wireframe]()
+[Landing mobile wireframe](https://github.com/onisstudio/personal-journal-ms3/blob/master/wireframes/landing-mobile.png)
 
-[Login wireframe]()
+[Login wireframe](https://github.com/onisstudio/personal-journal-ms3/blob/master/wireframes/login-page.png)
 
-[New entry wireframe]()
+[New entry wireframe](https://github.com/onisstudio/personal-journal-ms3/blob/master/wireframes/new-entry.png)
 
 ### Surface
 
@@ -68,13 +68,15 @@ Some of the features that can be implemented:
 
 The app was tested on all major browsers with no known issues.
 
+When testing on the official validator services I had some errors with duplicate ids for some elements, errors that were corrected.
+
 Tested HTML, CSS and JS on the official validator services. No major issues found.
 
 ## Deployment
 
 The site is hosted on GitHub, deployed from the master branch. The deployed site will update automatically upon new commits to the master branch.
 
-The project is also hosted on Heroku.
+The project is also hosted on Heroku [here](https://personaljournal.herokuapp.com/). To deploy the app to Heroku, you typically use the git push command to push the code from your local repository's master branch to your heroku remote, like so: $ git push heroku master.
 
 To run locally, you can clone this repository directly into the editor of your choice by pasting git clone <https://github.com/onisstudio/personal-journal-ms3.git> into your terminal. To cut ties with this GitHub repository, type git remote rm origin into the terminal.
 
