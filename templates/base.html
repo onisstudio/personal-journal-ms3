@@ -2,9 +2,11 @@
 <html>
 
 <head>
-    <link rel="stylesheet" href="../static/css/style.css">
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../static/css/materialize.min.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <link rel="shortcut icon" href="{{ url_for('static', filename='img/favicon.ico') }}">
 
     <title>{% block title %}{% endblock %} - Personal Journal</title>
 </head>
@@ -53,8 +55,7 @@
     <footer class="page-footer grey darken-4 pt0">
         <div class="footer-copyright">
             <div class="container">
-                © 2014 Copyright
-                <a class="grey-text text-lighten-4 right" href="#!">More Links</a>
+                © 2020 Onis Studio
             </div>
         </div>
     </footer>
